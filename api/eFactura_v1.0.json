@@ -1,0 +1,256 @@
+{
+  "openapi": "3.0.0",
+  "x-stoplight": {
+    "id": "d3pfw6253xtru"
+  },
+  "info": {
+    "title": "eFactura_v1.0",
+    "version": "1.0",
+    "description": "eFactura API"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:8001"
+    }
+  ],
+  "paths": {
+    "/invoice": {
+      "post": {
+        "summary": "Create New invoice",
+        "operationId": "post-invoice",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Missing Required Information"
+          },
+          "409": {
+            "description": "invoice already exist"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "number": {
+                    "type": "string"
+                  },
+                  "contractNumber": {
+                    "type": "string"
+                  },
+                  "issueDate": {
+                    "type": "string"
+                  },
+                  "dueDate": {
+                    "type": "string"
+                  },
+                  "deliveryDate": {
+                    "type": "string",
+                    "format": "date"
+                  },
+                  "buyer": {
+                    "type": "string"
+                  },
+                  "delivery": {
+                    "type": "string"
+                  },
+                  "product": {
+                    "type": "array",
+                    "items": {}
+                  },
+                  "comment": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "number",
+                  "contractNumber",
+                  "buyer"
+                ]
+              },
+              "examples": {
+                "example": {
+                  "value": {
+                    "Number": "string",
+                    "ContractNumber": "string",
+                    "IssueDate": "string",
+                    "DueDate": "string",
+                    "DeliveryDate": "string",
+                    "Buyer": {
+                      "Name": "string",
+                      "Address": {
+                        "Street": "string",
+                        "County": "string",
+                        "City": "string",
+                        "Country": "string",
+                        "Zipcode": "string"
+                      },
+                      "Contact": {
+                        "Name": "string",
+                        "Phone": "string",
+                        "Email": "string"
+                      }
+                    },
+                    "Delivery": {
+                      "Street": "string",
+                      "County": "string",
+                      "City": "string",
+                      "Country": "string",
+                      "Zipcode": "string"
+                    },
+                    "Product": {
+                      "Quantity": 1,
+                      "Price": 1,
+                      "Value": 1,
+                      "Description": "string"
+                    },
+                    "Comment": "string"
+                  }
+                }
+              }
+            }
+          },
+          "description": "Post the necessary fields for the API to create a new invoice."
+        },
+        "description": "Create a new invoice."
+      },
+      "parameters": []
+    },
+    "/invoice/{invoiceId}": {
+      "parameters": [
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": "invoiceId",
+          "in": "path",
+          "required": true
+        }
+      ],
+      "get": {
+        "summary": "Your GET endpoint",
+        "tags": [],
+        "responses": {},
+        "operationId": "get-invoice-invoiceId",
+        "description": "get specific invoice data"
+      }
+    },
+    "/invoice/search": {
+      "post": {
+        "summary": "",
+        "operationId": "post-invoice-search",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "description": "Search invoice",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "invoiceNumber": {
+                    "type": "string"
+                  },
+                  "buyerName": {
+                    "type": "string"
+                  },
+                  "startDate": {
+                    "type": "string",
+                    "format": "date"
+                  },
+                  "endDate": {
+                    "type": "string",
+                    "format": "date"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Invoice": {
+        "title": "Invoice",
+        "type": "object",
+        "description": "invoice Model",
+        "x-examples": {
+          "example": {
+            "id": 0,
+            "number": "string",
+            "contractNumber": "string",
+            "issueDate": "2022-10-31",
+            "dueDate": "2022-10-31",
+            "deliveryDate": "2022-10-31",
+            "buyer": "string",
+            "delivery": "string",
+            "product": [
+              null
+            ],
+            "comment": "string",
+            "createAt": "2019-08-24"
+          }
+        },
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "Unique identifier for the given invoice."
+          },
+          "number": {
+            "type": "string"
+          },
+          "contractNumber": {
+            "type": "string"
+          },
+          "issueDate": {
+            "type": "string",
+            "format": "date",
+            "example": "2022-10-31"
+          },
+          "dueDate": {
+            "type": "string",
+            "format": "date",
+            "example": "2022-10-31"
+          },
+          "deliveryDate": {
+            "type": "string",
+            "description": "goods delivery date",
+            "format": "date",
+            "example": "2022-10-31"
+          },
+          "buyer": {
+            "type": "string"
+          },
+          "delivery": {
+            "type": "string"
+          },
+          "product": {
+            "type": "array",
+            "items": {}
+          },
+          "comment": {
+            "type": "string"
+          },
+          "createAt": {
+            "type": "string",
+            "format": "date",
+            "description": "The date that the invoice was created."
+          }
+        },
+        "required": [
+          "id",
+          "number",
+          "contractNumber"
+        ]
+      }
+    }
+  }
+}
