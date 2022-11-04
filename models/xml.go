@@ -1,6 +1,9 @@
 package models
 
-import "encoding/xml"
+import (
+	"encoding/xml"
+	"time"
+)
 
 /**
 *	XML invoice Model
@@ -147,11 +150,12 @@ type LegalMonetaryTotal struct {
 }
 
 type InvoiceLine struct {
-	XMLName          xml.Name `xml:"cac:InvoiceLine"`
-	ID               string   `xml:"cbc:ID"`
-	InvoicedQuantity string   `xml:"cbc:InvoicedQuantity"`
-	Item             Item     `xml:"cac:Item"`
-	Price            Price    `xml:"cac:Price"`
+	XMLName             xml.Name `xml:"cac:InvoiceLine"`
+	ID                  string   `xml:"cbc:ID"`
+	InvoicedQuantity    string   `xml:"cbc:InvoicedQuantity"`
+	LineExtensionAmount string   `xml:"cbc:LineExtensionAmount"`
+	Item                Item     `xml:"cac:Item"`
+	Price               Price    `xml:"cac:Price"`
 }
 
 type Item struct {
@@ -171,4 +175,10 @@ type ClassifiedTaxCategory struct {
 type Price struct {
 	XMLName     xml.Name `xml:"cac:Price"`
 	PriceAmount string   `xml:"cbc:PriceAmount"`
+}
+
+func (inv *Invoice) setCustomizationID() string {
+	currentTime := time.Now()
+	currentDate := currentTime.Format("2006-01-02")
+	return "eFactura_" + currentDate + inv.Number + "_" + inv.ContractNumber
 }

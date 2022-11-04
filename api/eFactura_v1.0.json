@@ -1,7 +1,7 @@
 {
   "openapi": "3.0.0",
   "x-stoplight": {
-    "id": "d3pfw6253xtru"
+    "id": "eobtkqameoziu"
   },
   "info": {
     "title": "eFactura_v1.0",
@@ -51,18 +51,116 @@
                     "type": "string",
                     "format": "date"
                   },
-                  "buyer": {
+                  "value": {
                     "type": "string"
+                  },
+                  "tva": {
+                    "type": "string"
+                  },
+                  "total": {
+                    "type": "string"
+                  },
+                  "buyer": {
+                    "type": "object",
+                    "properties": {
+                      "name": {
+                        "type": "string"
+                      },
+                      "cif": {
+                        "type": "string"
+                      },
+                      "cui": {
+                        "type": "string"
+                      },
+                      "Iban": {
+                        "type": "string"
+                      },
+                      "address": {
+                        "type": "object",
+                        "properties": {
+                          "street": {
+                            "type": "string"
+                          },
+                          "county": {
+                            "type": "string"
+                          },
+                          "city": {
+                            "type": "string"
+                          },
+                          "country": {
+                            "type": "string"
+                          },
+                          "zipcode": {
+                            "type": "string"
+                          }
+                        }
+                      },
+                      "contact": {
+                        "type": "object",
+                        "properties": {
+                          "Name": {
+                            "type": "string"
+                          },
+                          "Phone": {
+                            "type": "string"
+                          },
+                          "Email": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
                   },
                   "delivery": {
-                    "type": "string"
+                    "type": "object",
+                    "properties": {
+                      "date": {
+                        "type": "string"
+                      },
+                      "address": {
+                        "type": "object",
+                        "properties": {
+                          "street": {
+                            "type": "string"
+                          },
+                          "county": {
+                            "type": "string"
+                          },
+                          "city": {
+                            "type": "string"
+                          },
+                          "country": {
+                            "type": "string"
+                          },
+                          "zipcode": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
                   },
                   "product": {
-                    "type": "array",
-                    "items": {}
+                    "type": "object",
+                    "properties": {
+                      "quantity": {
+                        "type": "string"
+                      },
+                      "price": {
+                        "type": "string"
+                      },
+                      "value": {
+                        "type": "string"
+                      },
+                      "description": {
+                        "type": "string"
+                      }
+                    }
                   },
                   "comment": {
                     "type": "string"
+                  },
+                  "TestMod": {
+                    "type": "boolean"
                   }
                 },
                 "required": [
@@ -72,42 +170,52 @@
                 ]
               },
               "examples": {
-                "example": {
+                "example-1": {
                   "value": {
-                    "Number": "string",
-                    "ContractNumber": "string",
-                    "IssueDate": "string",
-                    "DueDate": "string",
-                    "DeliveryDate": "string",
-                    "Buyer": {
-                      "Name": "string",
-                      "Address": {
-                        "Street": "string",
-                        "County": "string",
-                        "City": "string",
-                        "Country": "string",
-                        "Zipcode": "string"
+                    "number": "string",
+                    "contractNumber": "string",
+                    "issueDate": "string",
+                    "dueDate": "string",
+                    "deliveryDate": "2019-08-24",
+                    "value": "string",
+                    "tva": "string",
+                    "total": "string",
+                    "buyer": {
+                      "name": "string",
+                      "cif": "string",
+                      "cui": "string",
+                      "Iban": "string",
+                      "address": {
+                        "street": "string",
+                        "county": "string",
+                        "city": "string",
+                        "country": "string",
+                        "zipcode": "string"
                       },
-                      "Contact": {
+                      "contact": {
                         "Name": "string",
                         "Phone": "string",
                         "Email": "string"
                       }
                     },
-                    "Delivery": {
-                      "Street": "string",
-                      "County": "string",
-                      "City": "string",
-                      "Country": "string",
-                      "Zipcode": "string"
+                    "delivery": {
+                      "date": "string",
+                      "address": {
+                        "street": "string",
+                        "county": "string",
+                        "city": "string",
+                        "country": "string",
+                        "zipcode": "string"
+                      }
                     },
-                    "Product": {
-                      "Quantity": 1,
-                      "Price": 1,
-                      "Value": 1,
-                      "Description": "string"
+                    "product": {
+                      "quantity": "string",
+                      "price": "string",
+                      "value": "string",
+                      "description": "string"
                     },
-                    "Comment": "string"
+                    "comment": "string",
+                    "TestMod": true
                   }
                 }
               }
