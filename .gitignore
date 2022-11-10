@@ -18,6 +18,8 @@
 .glide/
 
 # Dependency directories (remove the comment below to include it)
-# vendor/
+vendor/
+logs/*.log
+tmp/*.xml
 
-.tmp
+configs/
